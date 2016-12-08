@@ -1,0 +1,200 @@
+//libray for using printf and scanf
+#include "stdio.h"
+
+//define variable using type, name, optional value
+//all lines end with ;
+//global variables
+int x = 0;
+float y;
+int a;
+float z = 9.0f;
+short s;
+double d = 8.9;
+
+//define functions type, name,(), {}
+int test()
+{
+	y = 2 * x;
+	return y;
+}
+void test2()
+{
+	int f;
+	f = x;
+	y = 3 * x;
+	return;
+}
+//draw a square
+void Square1()
+{
+	printf("**********\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("*        *\n");
+	printf("**********\n");
+}
+//draw a square using a loop to repeat lines that are the same
+void Square2()
+{
+	//height is a local variable
+	//always the same (hard-coded)
+	int height = 3;
+	printf("**********\n");
+	for (int count = 0; count < height; count++) //count = count + 1; count+=1; count++;
+	{
+		printf("*        *\n");
+	}
+	printf("**********\n");
+}
+
+//draw a square with variable height (parameter)
+//height is still a local variable but its value is not hard-coded
+//value of parameter comes from where the function is called
+void Square3(int height)
+{
+	printf("**********\n");
+	for (int count = 0; count < height; count++) //count = count + 1; count+=1; count++;
+	{
+		printf("*        *\n");
+	}
+	printf("**********\n");
+}
+//draw a square with user defined value
+void Square4()
+{
+	int height;
+	
+	printf("enter height: ");
+	scanf_s("%d", &height);
+
+	printf("**********\n");
+	for (int count = 0; count < height; count++) //count = count + 1; count+=1; count++;
+	{
+		printf("*        *\n");
+	}
+	printf("**********\n");
+}
+
+//draw a square with error checking (no negative size)
+void Square5a(int height) //using if and return
+{
+	if (height < 0)
+	{
+		printf("height = %d is not acceptable. Must be positive!\n", height);
+		return;
+	}
+	printf("**********\n");
+	for (int count = 0; count < height; count++) //count = count + 1; count+=1; count++;
+	{
+		printf("*        *\n");
+	}
+	printf("**********\n");
+}
+void Square5b(int height) //using if/else
+{
+	if (height < 0)
+	{
+		printf("height = %d is not acceptable. Must be positive!\n", height);
+	}
+	else
+	{
+		printf("**********\n");
+		for (int count = 0; count < height; count++) //count = count + 1; count+=1; count++;
+		{
+			printf("*        *\n");
+		}
+		printf("**********\n");
+	}
+}
+//Same as Square5 but with report to main
+//report using return value
+bool Square6(int height)
+{
+	bool drawn; //is drawing successful?
+	if (height < 0)
+	{
+		printf("height = %d is not acceptable. Must be positive!\n", height);
+		drawn = false;
+	}
+	else
+	{
+		printf("**********\n");
+		for (int count = 0; count < height; count++) //count = count + 1; count+=1; count++;
+		{
+			printf("*        *\n");
+		}
+		printf("**********\n");
+		drawn = true;
+	}
+
+	return drawn;
+}
+
+//main function
+//program starts here
+void main()
+{
+	int myData = 0;
+	printf("hello world! myData = %d %d\n",myData,y);
+	
+	printf("Square1\n");
+	Square1();
+	
+	printf("Square2\n");
+	Square2();
+	
+	printf("Square3\n");
+	Square3(5);
+	Square3(2);
+	Square3(1);
+	Square3(10);
+	printf("enter height: ");
+	int h;
+	scanf_s("%d", &h);
+	Square3(h);
+
+	printf("Square4\n");
+	Square4();
+
+	printf("repeat Square3\n");
+	//for (int i = 0; i < 3; i++)
+
+	//this is how to implement while using for
+	//for (; h!= 0;)
+	
+	//this is how to implement for using while
+	//int i = 0;
+	//while (i < 3)
+	//{
+	//	//some code here
+	//	i++;
+	//}
+
+
+	while(h!=0)
+	{
+		printf("enter height: "); //cout << "ghsdfsd"; cin >> h;
+		//int h;
+		scanf_s("%d", &h);
+		Square3(h);
+	}
+
+	printf("repeat Square5\n");
+	Square5a(6);
+	Square5a(-467);
+
+	printf("Square6\n");
+	bool squareDrawn;
+	squareDrawn = Square6(-9);
+	if (squareDrawn == true) //now we can do different things based on Square drawn or not
+	{
+	}
+	else
+	{
+	}
+}
